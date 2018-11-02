@@ -1,33 +1,52 @@
-
-let w = 'rovelast'
-let o = []
-for(let i in w){
-    o.push(wordsToMorse[w[i]]);
+function incode(str,text) {
+    let res = [];
+    let l = "&#8205;";
+    let s = "&#8204;";
+    let q = "&#8203;";
+    for (let i in str) {
+        res.push(wordsToMorse[str[i]]);
+    } 
+    let encrypt = res.join("/");
+    encrypt = encrypt.replace(/\//g, q)
+    encrypt = encrypt.replace(/\./g, s)
+    encrypt = encrypt.replace(/\-/g, l)
+    return text + encrypt+text;
 }
-let encrypt = o.join("/");
+function decode(text) {
+    let temp = text.match(/(\&\#8203\;|\&\#8204\;|\&\#8205\;)+/g)[0];
+    temp = temp.replace(/\&\#8203\;/g, "/");
+    temp = temp.replace(/\&\#8204\;/g, ".");
+    temp = temp.replace(/\&\#8205\;/g, "-");
 
-let l = "&#8205;";
-let s = "&#8204;";
-let q = "&#8203;";
+    let arr = temp.split("/");
 
-encrypt = encrypt.replace(/\//g, q)
-encrypt = encrypt.replace(/\./g, s)
-encrypt = encrypt.replace(/\-/g, l)
-encrypt += 'im here';
-
-let decode = encrypt.match(/(\&\#8203\;|\&\#8204\;|\&\#8205\;)+/g)[0];
-console.log(decode);
-decode = decode.replace(/\&\#8203\;/g, "/");
-decode = decode.replace(/\&\#8204\;/g, ".");
-decode = decode.replace(/\&\#8205\;/g, "-");
-
-let tep = decode.split('/')
-let c = []
-for(let i in tep){
-    c.push(morseToWords[tep[i]]);
+    let decode = [];
+    for (let i in arr) {
+        decode.push(morseToWords[arr[i]]);
+    }
+    return decode;
 }
 
-console.log(c);
+let t = incode('love','空方')
 
+console.log(t);
 
-document.getElementById("box").innerHTML = encrypt+'im here';
+let w = decode(t)
+
+console.log(w);
+console.log("空方‌‍‌‌​‍‍‍​‌‌‌‍​‌空方‌‍‌‌​‍‍‍​‌‌‌‍​‌‌‍‌‌​‍‍‍​‌‌‌‍​‌");
+
+function ddd(){
+    let ipt = document.getElementById("ipt").value;
+    let code = incode(ipt, "空方");
+    console.log(code);
+    document.getElementById("box").innerHTML = code;
+}
+function ttt() {
+    let ipt = document.getElementById("show").value;
+    let code = decode(ipt, "空方");
+    console.log(code);
+    document.getElementById("box").innerHTML = code;
+}
+
+document.getElementById("box").innerHTML = t;
