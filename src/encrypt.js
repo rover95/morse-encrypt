@@ -13,10 +13,10 @@ function incode(str,text) {
     return text + encrypt+text;
 }
 function decode(text) {
-    let temp = text.match(/(\&\#8203\;|\&\#8204\;|\&\#8205\;)+/g)[0];
-    temp = temp.replace(/\&\#8203\;/g, "/");
-    temp = temp.replace(/\&\#8204\;/g, ".");
-    temp = temp.replace(/\&\#8205\;/g, "-");
+    let temp = text.match(/(\&\#8203\;|\&\#8204\;|\&\#8205\;|\u200B|\u200C|\u200D)+/g)[0];
+    temp = temp.replace(/\&\#8203\;|\u200B/g, "/");
+    temp = temp.replace(/\&\#8204\;|\u200C/g, ".");
+    temp = temp.replace(/\&\#8205\;|\u200D/g, "-");
 
     let arr = temp.split("/");
 
@@ -27,26 +27,32 @@ function decode(text) {
     return decode;
 }
 
-let t = incode('love','空方')
+let t = incode('love','llll')
 
 console.log(t);
 
 let w = decode(t)
 
 console.log(w);
-console.log("空方‌‍‌‌​‍‍‍​‌‌‌‍​‌空方‌‍‌‌​‍‍‍​‌‌‌‍​‌‌‍‌‌​‍‍‍​‌‌‌‍​‌");
-
 function ddd(){
     let ipt = document.getElementById("ipt").value;
-    let code = incode(ipt, "空方");
+    let code = incode(ipt, "w");
     console.log(code);
     document.getElementById("box").innerHTML = code;
+    let t = document.getElementById("box").innerHTML
+    document.getElementById("show").value = t;
+    setTimeout(() => {
+        document.getElementById("box").innerHTML = document.getElementById("show").value;
+        
+    }, 1000);
+    
 }
 function ttt() {
     let ipt = document.getElementById("show").value;
-    let code = decode(ipt, "空方");
+    let code = decode(ipt);
     console.log(code);
     document.getElementById("box").innerHTML = code;
 }
 
-document.getElementById("box").innerHTML = t;
+// document.getElementById("show").value = t;
+// document.getElementById("box").innerHTML = t;
