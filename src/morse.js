@@ -27,3 +27,4 @@ for (let i in morseNumber){
 }
 
 console.log(wordsToMorse, morseToWords, morseToNum);
+export { wordsToMorse, morseToWords, morseToNum, numToMorse };
