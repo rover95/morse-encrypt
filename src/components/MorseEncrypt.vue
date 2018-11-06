@@ -1,11 +1,18 @@
 <template>
-  <div>
-    <input v-model="incodes">
-    <button @click="handleIncode">加密</button>
-    <br>
-    <input id="output" v-model="outcodes">
-    <button @click="handleDecode">解密</button>
-    <div id="box">{{outcodes}}</div>
+  <div class="page">
+    <div class="flex-center">
+      <div>
+        <input class="ipt-cell" v-model="incodes">
+      <button class="btn" @click="handleIncode">加密</button>
+      </div>
+      <br>
+      <div>
+        <input id="output" class="ipt-cell" v-model="outcodes">
+        <button class="btn" @click="handleDecode">解密</button>
+        <div id="box">{{outcodes}}</div>
+        
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,5 +47,35 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+.page{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  max-width: 500px;
+  background-color: #eee;
+}
+.ipt-cell{
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  outline: none;
+  background-color: #ddd;
+}
+.btn{
+  border: none; 
+  color: #fff;
+  padding: 4px;
+  border-radius: 4px;
+  background-color: #3af;
+}
+.flex-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 </style>
