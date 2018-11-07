@@ -1,17 +1,18 @@
 <template>
   <div class="page">
-    <div class="flex-center">
-      <div>
+    <div class="ipt-box">
+      <div class="ipt-row">
         <input class="ipt-cell" v-model="incodes">
-      <button class="btn" @click="handleIncode">加密</button>
+        <button class="btn" @click="handleIncode">加密</button>
       </div>
       <br>
-      <div>
+      <div class="ipt-row">
         <input id="output" class="ipt-cell" v-model="outcodes">
         <button class="btn" @click="handleDecode">解密</button>
-        <div id="box">{{outcodes}}</div>
-        
       </div>
+      <div id="string"></div>
+      
+      <div id="box" class="show-cell">{{outcodes}}</div>
     </div>
   </div>
 </template>
@@ -33,9 +34,17 @@ export default {
     handleIncode: function() {
       let code = incode(this.incodes, "w");
       this.outcodes = code;
+      let html='';
+      for(let i in code){
+        setTimeout(() => {
+           html +=code[i]
+          this.outcodes =html
+        }, 10*i);
+       
+      }
       console.log(code);
       document.getElementById("output").value = code;
-      document.getElementById("box").innerHTML = code;
+      document.getElementById("string").innerHTML = code;
     },
     handleDecode: function() {
       let code = decode(this.outcodes);
@@ -48,10 +57,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+#string{
+  padding: 15px;
+  text-align: center;
+  font-size: 20px;
+}
 .page{
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0 auto;
   width: 100vw;
   height: 100vh;
@@ -77,5 +88,21 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+.ipt-row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ipt-box{
+  width: 100%;
+  padding-top: 30vh;
+}
+.show-cell{
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  max-width: 500px;
+  word-break: break-all;
 }
 </style>
