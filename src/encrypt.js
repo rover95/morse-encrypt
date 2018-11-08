@@ -1,17 +1,24 @@
-import { wordsToMorse, morseToWords, morseToNum, numToMorse } from "./morse";
+import { wordsToMorse, morseToWords, morseToNum, numToMorse, decodeWords } from "./morse";
 function incode(str,text) {
     let res = [];
     let l = "&#8205;";
     let s = "&#8204;";
     let q = "&#8203;";
     for (let i in str) {
-        res.push(wordsToMorse[str[i]]);
+        let val = str[i];
+        console.log(!!parseInt(val));
+        
+        if (!!parseInt(val)) {
+          res.push(numToMorse[str[i]]);
+        } else {
+          res.push(wordsToMorse[str[i]]);
+        }
     } 
     let encrypt = res.join("/");
     encrypt = encrypt.replace(/\//g, q)
     encrypt = encrypt.replace(/\./g, s)
     encrypt = encrypt.replace(/\-/g, l)
-    return text + encrypt+text;
+    return encrypt+text;
 }
 function decode(text) {
     let temp = text.match(/(\&\#8203\;|\&\#8204\;|\&\#8205\;|\u200B|\u200C|\u200D)+/g)[0];
@@ -23,7 +30,7 @@ function decode(text) {
 
     let decode = [];
     for (let i in arr) {
-        decode.push(morseToWords[arr[i]]);
+        decode.push(decodeWords[arr[i]]);
     }
     return decode;
 }

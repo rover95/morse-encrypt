@@ -1,6 +1,6 @@
 const morseWords = ['.-','-...','-.-.','-..','.','..-.','--.','....','..','.---','-.-','.-..','--','-.','---','.--.','--.-','.-.','...','-','..-','...-','.--','-..-','-.--','--..']
 
-const morseNumber = ['-----','.----','..---','...--','....-','.....',' -....',' --...','---..','----.']
+const morseNumber = ['-----','.----','..---','...--','....-','.....','-....','--...','---..','----.']
 
 let wordsToMorse = {};
 let morseToWords = {};
@@ -25,6 +25,8 @@ for (let i in wordsToMorse) {
 for (let i in morseNumber){
     morseToNum[morseNumber[i]]=i;
 }
+let decodeWords = Object.assign(morseToWords, morseToNum);
+console.log(decodeWords);
 
-console.log(wordsToMorse, morseToWords, morseToNum);
-export { wordsToMorse, morseToWords, morseToNum, numToMorse };
+
+export { wordsToMorse, morseToWords, morseToNum, numToMorse, decodeWords };
