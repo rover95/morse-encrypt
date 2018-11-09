@@ -1,13 +1,11 @@
 import { wordsToMorse, morseToWords, morseToNum, numToMorse, decodeWords } from "./morse";
-function incode(str,text) {
+function incode(str,textBefore,textAfter) {
     let res = [];
     let l = "&#8205;";
     let s = "&#8204;";
     let q = "&#8203;";
     for (let i in str) {
         let val = str[i];
-        console.log(!!parseInt(val));
-        
         if (!!parseInt(val)) {
           res.push(numToMorse[str[i]]);
         } else {
@@ -18,7 +16,7 @@ function incode(str,text) {
     encrypt = encrypt.replace(/\//g, q)
     encrypt = encrypt.replace(/\./g, s)
     encrypt = encrypt.replace(/\-/g, l)
-    return encrypt+text;
+    return textBefore + encrypt + textAfter;
 }
 function decode(text) {
     let temp = text.match(/(\&\#8203\;|\&\#8204\;|\&\#8205\;|\u200B|\u200C|\u200D)+/g)[0];

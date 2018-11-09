@@ -3,12 +3,16 @@
     <div class="ipt-box">
       <div class="ipt-row">
         <!-- <input class="ipt-cell" v-model="incodes"> -->
-        <input class="ipt-cell" v-model="plaintext" placeholder="输入显示明文"/>
+        <input class="ipt-cell" v-model="plaintext_before" placeholder="输入前段文本"/>
       </div>
       <div class="ipt-row">
         <!-- <input class="ipt-cell" v-model="incodes"> -->
-        <textarea class="ipt-cell" v-model="incodes" placeholder="输入加密文本"></textarea>
+        <input class="ipt-cell" v-model="incodes" placeholder="输入加密文本"/>
+      </div>
+      <div class="ipt-row">
+        <input class="ipt-cell" v-model="plaintext_after" placeholder="输入后段文本"/>
         <button class="btn" @click="handleIncode">加密</button>
+        
       </div>
       <br>
       <div class="ipt-row">
@@ -29,6 +33,8 @@ export default {
   data() {
     return {
       msg: "encrypt",
+      plaintext_before:'',
+      plaintext_after:'',
       incodes: "",
       willDecode:'',
       outcodes: ""
@@ -37,15 +43,14 @@ export default {
   created: function() {},
   methods: {
     handleIncode: function() {
-      let code = incode(this.incodes, this.plaintext);
+      let code = incode(this.incodes, this.plaintext_before,this.plaintext_after);
       this.outcodes = code;
       let html='';
       for(let i in code){
         setTimeout(() => {
            html +=code[i]
           this.outcodes =html
-        }, 10*i);
-       
+        }, 5*i);
       }
       console.log(code);
       document.getElementById("output").value = code;
@@ -68,22 +73,56 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 #string{
+  position: relative;
+  width: 90%;
+  margin: 35px auto;
+  margin-top: 60px;
   padding: 15px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
   text-align: center;
   font-size: 20px;
+}
+#string::before{
+  content: '密文';
+  font-size: 12px;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.show-cell{
+  position: relative;
+  width: 90%;
+  padding: 15px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  margin: 15px auto;
+  box-sizing: border-box;
+  max-width: 500px;
+  word-break: break-all;
+}
+.show-cell::before{
+  content: '明文';
+  font-size: 12px;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .page{
   margin: 0 auto;
   width: 100vw;
   min-height: 100vh;
   max-width: 500px;
+  box-sizing: border-box;
   background-color: #eee;
 }
 .ipt-cell{
   border: none;
   max-width: 250px;
   min-width: 250px;
-  max-height: 300px;
+  max-height: 100px;
   min-height: 30px;
   width: 250px;
   padding: 5px 10px;
@@ -94,8 +133,9 @@ export default {
 }
 .btn{
   border: none; 
+  width: 100px;
   color: #fff;
-  padding: 4px;
+  padding: 5px;
   border-radius: 4px;
   background-color: #3af;
 }
@@ -113,13 +153,7 @@ export default {
 }
 .ipt-box{
   width: 100%;
-  padding-top: 10vh;
+  padding-top: 50px;
 }
-.show-cell{
-  width: 100%;
-  padding: 15px;
-  box-sizing: border-box;
-  max-width: 500px;
-  word-break: break-all;
-}
+
 </style>
