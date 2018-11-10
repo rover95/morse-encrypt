@@ -58,8 +58,8 @@ export default {
     },
     handleDecode: function() {
       let code = decode(this.willDecode);
-      console.log(code);
-      this.outcodes = code;
+      console.log(code.join('...'));
+      this.outcodes = code.join('');
     },
     copyCodes: function(id){
       var node=document.getElementById(id);
