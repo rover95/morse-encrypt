@@ -5,10 +5,11 @@ import MorseEncrypt from '@/components/MorseEncrypt'
 Vue.use(Router)
 
 export default new Router({
+  mode: "history",
   routes: [
     {
-      path: '/',
-      name: 'MorseEncrypt',
+      path: "/",
+      name: "MorseEncrypt",
       component: MorseEncrypt
     }
   ]
