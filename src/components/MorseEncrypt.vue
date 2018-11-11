@@ -22,6 +22,10 @@
       <div id="string"></div>
       <div id="box" class="show-cell">{{outcodes}}</div>
     </div>
+    <div class="footer-info">
+      <div>Designed & Powerd by Rovelast.</div>
+      <div>Copyright © 2018 Rovelast.</div>
+    </div>
   </div>
 </template>
 
@@ -69,6 +73,14 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+.footer-info{
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  text-align: center;
+}
 #string{
   position: relative;
   width: 90%;
