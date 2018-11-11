@@ -26,6 +26,7 @@ for (let i in morseNumber){
     morseToNum[morseNumber[i]]=i;
 }
 let decodeWords = Object.assign(morseToWords, morseToNum);
+decodeWords['-...-'] = ' ';
 console.log(decodeWords);
 
 

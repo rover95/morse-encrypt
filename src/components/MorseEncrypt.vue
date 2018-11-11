@@ -16,7 +16,7 @@
       </div>
       <br>
       <div class="ipt-row">
-        <textarea id="output" class="ipt-cell" placeholder="粘贴密文" style="height:300px" v-model="willDecode"></textarea>
+        <textarea class="ipt-cell" placeholder="粘贴密文" style="height:300px" v-model="willDecode"></textarea>
         <button class="btn" @click="handleDecode">解密</button>
       </div>
       <div id="string"></div>
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { incode, decode } from "../encrypt.js";
+import { incode, decode } from "../utils/encrypt.js";
 
 export default {
   name: "Index",
@@ -44,7 +44,6 @@ export default {
   methods: {
     handleIncode: function() {
       let code = incode(this.incodes, this.plaintext_before,this.plaintext_after);
-      this.outcodes = code;
       let html='';
       for(let i in code){
         setTimeout(() => {
@@ -53,12 +52,10 @@ export default {
         }, 5*i);
       }
       console.log(code);
-      document.getElementById("output").value = code;
       document.getElementById("string").innerHTML = code;
     },
     handleDecode: function() {
       let code = decode(this.willDecode);
-      console.log(code.join('...'));
       this.outcodes = code.join('');
     },
     copyCodes: function(id){

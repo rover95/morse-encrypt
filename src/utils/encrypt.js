@@ -6,7 +6,9 @@ function incode(str,textBefore,textAfter) {
     let q = "&#8203;";
     for (let i in str) {
         let val = str[i];
-        if (!!parseInt(val)) {
+        if(val === ' '){
+            res.push('-...-')
+        }else if (!!parseInt(val)) {
           res.push(numToMorse[str[i]]);
         } else {
           res.push(wordsToMorse[str[i]]);
@@ -19,17 +21,20 @@ function incode(str,textBefore,textAfter) {
     return textBefore + encrypt + textAfter;
 }
 function decode(text) {
-    let temp = text.match(/(\&\#8203\;|\&\#8204\;|\&\#8205\;|\u200B|\u200C|\u200D)+/g)[0];
-    temp = temp.replace(/\&\#8203\;|\u200B/g, "/");
-    temp = temp.replace(/\&\#8204\;|\u200C/g, ".");
-    temp = temp.replace(/\&\#8205\;|\u200D/g, "-");
-
-    let arr = temp.split("/");
-
+    // console.log(text,text.match(/(\&\#8203\;|\&\#8204\;|\&\#8205\;|\u200B|\u200C|\u200D|\&zwnj\;|\&zwj\;)+/g));
     let decode = [];
-    for (let i in arr) {
-        decode.push(decodeWords[arr[i]]);
-    }
+
+    text.match(/(\&\#8203\;|\&\#8204\;|\&\#8205\;|\u200B|\u200C|\u200D|\&zwnj\;|\&zwj\;)+/g).map(temp => {
+        temp = temp.replace(/\&\#8203\;|\u200B/g, "/");
+        temp = temp.replace(/\&\#8204\;|\u200C|\&zwnj\;/g, ".");
+        temp = temp.replace(/\&\#8205\;|\u200D|\&zwj\;/g, "-");
+        let arr = temp.split("/");
+
+        for (let i in arr) {
+            decode.push(decodeWords[arr[i]]);
+        }
+    })
+    
     return decode;
 }
 
