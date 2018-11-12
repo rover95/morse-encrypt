@@ -1,5 +1,8 @@
 <template>
   <div class="page">
+    <div class="page-title">
+      基于零宽字符和摩斯电码的字符串隐藏加密，将密文转码为零宽字符隐藏插入明文中
+    </div>
     <div class="ipt-box">
       <div class="ipt-row">
         <!-- <input class="ipt-cell" v-model="incodes"> -->
@@ -23,8 +26,8 @@
       <div id="box" class="show-cell">{{outcodes}}</div>
     </div>
     <div class="footer-info">
-      <div>Designed & Powerd by Rovelast.</div>
-      <div>Copyright © 2018 Rovelast.</div>
+      <div>Designed & Powerd by rovelast@gmail.com</div>
+      <div>Copyright © 2018 Rovelast</div>
     </div>
   </div>
 </template>
@@ -73,12 +76,19 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
+.page-title{
+  font-size: 18px;
+  padding: 15px;
+  text-align: center;
+  color: #555;
+}
 .footer-info{
   position: absolute;
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 10px;
+  color: #999;
   text-align: center;
 }
 #string{
@@ -125,7 +135,8 @@ export default {
   min-height: 100vh;
   max-width: 500px;
   box-sizing: border-box;
-  background-color: #eee;
+  overflow: hidden;
+  background-color: #efefef;
 }
 .ipt-cell{
   border: none;
