@@ -1,8 +1,11 @@
 <template>
   <div class="page">
     <div class="page-title">
-      基于零宽字符和摩斯电码的字符串隐藏加密，将密文转码为零宽字符隐藏插入明文中
+      零宽字符隐藏加密
     </div>
+    <!-- <div>
+      使用零宽字符转码密文，插入到普通文本当中存储隐藏信息；
+    </div> -->
     <div class="ipt-box">
       <div class="ipt-row">
         <!-- <input class="ipt-cell" v-model="incodes"> -->
@@ -26,8 +29,8 @@
       <div id="box" class="show-cell">{{outcodes}}</div>
     </div>
     <div class="footer-info">
-      <div>Designed & Powerd by rovelast@gmail.com</div>
-      <div>Copyright © 2018 Rovelast</div>
+      <div>Designed & Powerd by Rovelast</div>
+      <!-- <div>Copyright © 2018 Rovelast</div> -->
     </div>
   </div>
 </template>
@@ -47,10 +50,24 @@ export default {
       outcodes: ""
     };
   },
-  created: function() {},
+  created: function() {
+    let a = parseInt('啊'.charCodeAt(0),10).toString(16)
+    console.log(a,String.fromCharCode(parseInt(a,16)));
+    
+  },
   methods: {
     handleIncode: function() {
-      let code = incode(this.incodes, this.plaintext_before,this.plaintext_after);
+      let ch_Z = this.incodes.match(/[\u4e00-\u9fa5]+/g)
+      console.log(ch_Z);
+      let incodes = this.incodes;
+      if(ch_Z){
+        incodes=incodes.replace(/[\u4e00-\u9fa5]/g,function(t){
+          return '\\u' +parseInt(t.charCodeAt(0),10).toString(16)
+        })
+        console.log(incodes);
+      }
+      
+      let code = incode(incodes, this.plaintext_before,this.plaintext_after);
       let html='';
       for(let i in code){
         setTimeout(() => {
@@ -58,12 +75,20 @@ export default {
           this.outcodes =html
         }, 5*i);
       }
-      console.log(code);
       document.getElementById("string").innerHTML = code;
     },
     handleDecode: function() {
       let code = decode(this.willDecode);
-      this.outcodes = code.join('');
+      let outcodes =  code.join('');
+      console.log(code,outcodes);
+      
+      outcodes = outcodes.replace(/\\u[0-9a-z]{4}/g,(t)=>{
+        
+        return String.fromCharCode(parseInt(t.replace('\\u',''),16))
+      })
+      console.log(outcodes);
+      
+      this.outcodes = outcodes;
     },
     copyCodes: function(id){
       var node=document.getElementById(id);
@@ -77,15 +102,24 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 .page-title{
+  position: relative;
   font-size: 18px;
+  font-weight: 700;
   padding: 15px;
   text-align: center;
   color: #555;
 }
+/* .page-title:hover::before{
+  content: 'asdasdqw';
+  position: absolute;
+  bottom: 0;
+  background-color: #fff;
+} */
 .footer-info{
   position: absolute;
   bottom: 10px;
   left: 50%;
+  width: 100%;
   transform: translateX(-50%);
   font-size: 10px;
   color: #999;
@@ -130,10 +164,12 @@ export default {
   transform: translateX(-50%);
 }
 .page{
+  position: relative;
   margin: 0 auto;
   width: 100vw;
   min-height: 100vh;
   max-width: 500px;
+  padding-bottom: 50px;
   box-sizing: border-box;
   overflow: hidden;
   background-color: #efefef;
@@ -173,7 +209,7 @@ export default {
 }
 .ipt-box{
   width: 100%;
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 </style>

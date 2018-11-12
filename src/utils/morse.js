@@ -26,8 +26,10 @@ for (let i in morseNumber){
     morseToNum[morseNumber[i]]=i;
 }
 let decodeWords = Object.assign(morseToWords, morseToNum);
+/* 附件字符 */
 decodeWords['-...-'] = ' ';
-console.log(decodeWords);
+decodeWords[".--.-"] = "\\";
+wordsToMorse["\\"] = ".--.-";
 
 
 export { wordsToMorse, morseToWords, morseToNum, numToMorse, decodeWords };

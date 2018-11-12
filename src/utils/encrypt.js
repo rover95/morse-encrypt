@@ -8,7 +8,7 @@ function incode(str,textBefore,textAfter) {
         let val = str[i];
         if(val === ' '){
             res.push('-...-')
-        }else if (!!parseInt(val)) {
+        } else if (!!parseInt(val) || parseInt(val) == 0) {
           res.push(numToMorse[str[i]]);
         } else {
           res.push(wordsToMorse[str[i]]);
