@@ -6,13 +6,18 @@ let wordsToMorse = {};
 let morseToWords = {};
 
 let morseToNum = {};
+
+//a-z数组
+let words = [];
+for (let i = 10; i < 36; i++) {
+  let j = i.toString(36);
+  words.push(j);
+}
+
+//数字加密字典
 let numToMorse = morseNumber;
 
-let words=[];
-for (let i = 10; i < 36; i++) {
-    let j = i.toString(36)
-    words.push(j);
-}
+
 //字母加密字典
 for (let i in words) {
     wordsToMorse[words[i]] = morseWords[i];
@@ -25,6 +30,7 @@ for (let i in wordsToMorse) {
 for (let i in morseNumber){
     morseToNum[morseNumber[i]]=i;
 }
+//合并字典
 let decodeWords = Object.assign(morseToWords, morseToNum);
 /* 附件字符 */
 decodeWords['-...-'] = ' ';
