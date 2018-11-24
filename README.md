@@ -2,7 +2,7 @@
 
 原理是利用零宽字符对加密文本进行转码，嵌入到普通文本当中，从而隐藏加密内容；表面看起来是一段普通文本，复制粘贴不会丢失
 
-![gif]('https://raw.githubusercontent.com/rover95/morse-encrypt/master/src/assets/morse.gif')
+![gif](https://raw.githubusercontent.com/rover95/morse-encrypt/master/src/assets/morse.gif)
 
 ## 秘密传达消息
 
