@@ -51,9 +51,7 @@ export default {
     };
   },
   created: function() {
-    let a = parseInt('啊'.charCodeAt(0),10).toString(16)
-    console.log(a,String.fromCharCode(parseInt(a,16)));
-    
+   
   },
   methods: {
     handleIncode: function() {
