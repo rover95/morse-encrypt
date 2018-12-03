@@ -4,7 +4,7 @@
 
 ## 存储隐藏信息  
 
-比如隐藏加密存储比特币钱包
+比如隐藏加密存储比特币钱包  
 ![gif](https://raw.githubusercontent.com/rover95/morse-encrypt/master/src/assets/morse-b.gif)
 
 ## 秘密传达消息
