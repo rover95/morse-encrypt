@@ -25,7 +25,7 @@
         <textarea class="ipt-cell" placeholder="粘贴密文" style="height:300px" v-model="willDecode"></textarea>
         <button class="btn" @click="handleDecode">解密</button>
       </div>
-      <div id="string"></div>
+      <div id="string" @click="copyCodes"></div>
       <div id="box" class="show-cell">{{outcodes}}</div>
     </div>
     <div class="footer-info">
@@ -88,10 +88,26 @@ export default {
       
       this.outcodes = outcodes;
     },
-    copyCodes: function(id){
-      var node=document.getElementById(id);
-      node.select(); // 选择对象
-      document.execCommand("Copy"); // 执行浏览器复制命令
+    copyCodes: function(){
+       function copyToClipboard(elementId) {
+          // 创建元素用于复制
+          var aux = document.createElement("input");
+          // 获取复制内容
+          var content = document.getElementById(elementId).innerHTML || document.getElementById(elementId).value;
+          // 设置元素内容
+          aux.setAttribute("value", content);
+          // 将元素插入页面进行调用
+          document.body.appendChild(aux);
+          // 复制内容
+          aux.select();
+          // 将内容复制到剪贴板
+          document.execCommand("copy");
+          // 删除创建元素
+          document.body.removeChild(aux);
+          //提示
+          alert("已复制到剪贴板");
+      }
+      copyToClipboard('string')
     }
   }
 };
