@@ -30,6 +30,7 @@
     </div>
     <div class="footer-info">
       <div>Designed & Powerd by Rovelast</div>
+      <div>项目地址<a href="https://github.com/rover95/morse-encrypt"  target="_blank">Github</a></div>
       <!-- <div>Copyright © 2018 Rovelast</div> -->
     </div>
   </div>
