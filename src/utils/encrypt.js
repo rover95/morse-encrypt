@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { wordsToMorse, morseToWords, morseToNum, numToMorse, decodeWords } from "./morse";
 function incode(str,textBefore,textAfter) {
     let res = [];
