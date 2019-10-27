@@ -66,7 +66,9 @@ export default {
   methods: {
     handleSwitchChange(e){
       const {id} = e.target;
-      this.encryptType = id      
+      if(!!id){
+        this.encryptType = id      
+      }
     },
     handleIncode: function() {
       let code = '';

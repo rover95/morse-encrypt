@@ -34,9 +34,12 @@ for (let i in morseNumber){
 //合并字典
 let decodeWords = Object.assign(morseToWords, morseToNum);
 /* 附件字符 */
+const unicodeSsplit = "|/|"; //unicode 分割符
 decodeWords['-...-'] = ' ';
 decodeWords[".--.-"] = "\\";
+decodeWords[".--.."] = unicodeSsplit;
 wordsToMorse["\\"] = ".--.-";
+wordsToMorse[unicodeSsplit] = ".--..";
 
 
-export { wordsToMorse, morseToWords, morseToNum, numToMorse, decodeWords };
+export { wordsToMorse, morseToWords, morseToNum, numToMorse, decodeWords, unicodeSsplit };

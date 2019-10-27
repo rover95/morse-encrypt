@@ -1,4 +1,5 @@
 import { incode, decode } from './encrypt';
+import { unicodeSsplit } from "./morse";
 
 /*
     @param {String} str 待加密文本
@@ -12,7 +13,7 @@ export function incodeByUnicode (str = '', textBefore = '', textAfter = '') {
   for (let i = 0; i < str.length; i++) {
     unicodeArr.push(str.charCodeAt(i).toString(36));
   }
-  unicodeStr = unicodeArr.join('/');
+  unicodeStr = unicodeArr.join(unicodeSsplit) + unicodeSsplit;
   // 零宽转码
   const ciphertext = incode(unicodeStr);
   return textBefore + ciphertext + textAfter;
@@ -29,11 +30,11 @@ export function decodeByUnicode (str) {
     if (val) {
       unicodeText += val;
     } else {
-      unicodeText += '/';
+      unicodeText += unicodeSsplit;
     }
   });
   // unicode 逆转码
-  unicodeText.split('/').forEach(val => {
+  unicodeText.split(unicodeSsplit).forEach(val => {
     if (!val || val.length === 0) {
       return;
     }
