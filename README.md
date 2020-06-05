@@ -4,6 +4,37 @@
 
 ## **更新**
 - 添加unicode转码, 支持所有字符
+- npm包使用
+```js
+var encrypt = require('zero-encrypt')
+/*
+    基于摩斯电码加密
+    @param {String} str 待加密文本
+    @param {String} textBefore 前段明文
+    @param {String} textAfter 后段明文
+*/
+encrypt.incode(str,textBefore, textAfter)
+
+/*
+    基于摩斯电码解密
+    @param {String} text 待解密字符串
+*/
+encrypt.decode(text)
+
+/*
+    unicode加密
+    @param {String} str 待加密文本
+    @param {String} textBefore 前段明文
+    @param {String} textAfter 后段明文
+*/
+incodeByUnicode (str, textBefore, textAfter)
+
+/*
+  unicode解密
+  @param {String} str 待解密字符串
+*/
+decodeByUnicode (str)
+```
 
 ## 存储隐藏信息  
 
