@@ -52,7 +52,7 @@ decodeByUnicode (str)
 ## 为文章添加隐藏水印
 
 你可以在你写的文章插入隐藏字符，将作者信息嵌入其中，当别人复制你的文章时，并不会发现这片文章已经被你悄悄打下水印
-比如下面这段话，复制粘贴到 [https://zero.rovelast.com](https://zero.rovelast.com) 进行解密
+比如下面这段话，复制粘贴到 [http://zero.rovelast.com](http://zero.rovelast.com) 进行解密
 
 ```txt
 春风再美也比上你的笑，‌‍‌​‍‍‍​‌‌‌‍​‌​‌‍‌‌​‌‍​‌‌‌​‍没见过你的人不会明了
