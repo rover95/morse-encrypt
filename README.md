@@ -7,6 +7,10 @@
 ## **更新**
 - 添加unicode转码, 支持所有字符
 - npm包使用
+```
+npm i zero-encrypt -S
+```
+
 ```js
 var encrypt = require('zero-encrypt')
 /*
